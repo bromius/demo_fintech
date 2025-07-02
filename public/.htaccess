@@ -1,0 +1,55 @@
+RewriteEngine On
+
+# Set base directory if your project is not in the web root
+RewriteBase /
+
+# Disable directory listing
+Options -Indexes
+
+DirectoryIndex index.html index.php
+AddDefaultCharset utf-8
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^ index.php [QSA,L]
+
+# Protect sensitive files from being accessed
+<FilesMatch "\.(htaccess|env|ini|log|sh|inc|bak|psd|sql|swp|dist)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(woff|woff2|ttf|eot|svg)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+# Protect Slim config files (e.g., .env)
+<Files .env>
+    Require all denied
+</Files>
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+	
+    Header set Content-Security-Policy "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
+</IfModule>
+
+# Enable compression if mod_deflate is available
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml application/rss+xml application/font-woff2 application/font-woff
+</IfModule>
+
+# Clickjacking protection
+Header always append X-Frame-Options SAMEORIGIN
+
+# Cross-site scripting (XSS) protection
+Header set X-XSS-Protection "1; mode=block"
+
+# Disable PHP error display (for production)
+php_flag display_errors Off
+php_flag log_errors On
+php_value error_log /demo-fintech.kinweb.name/App/storage/logs/php_error.log
