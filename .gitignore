@@ -1,0 +1,45 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.cache
+*.tmp
+*.temp
+
+# Composer
+/vendor/
+
+# IDE and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# System files
+*.bak
+*.swp
+*~
+
+# PHPStorm
+/.idea/
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Cache and sessions
+cache/
+tmp/
+storage/
+*.pid
+
+# Project files
+App/config/database.php
+App/config/app.php
+App/storage/*
+
+public/*vhost.conf
+public/.npmrc
+public/node_modules/

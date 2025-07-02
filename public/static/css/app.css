@@ -1,0 +1,92 @@
+.drop-zone {
+    border: .15rem dashed #ced4da;
+    border-radius: .5rem;
+    min-height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.drop-zone.dragover {
+    background-color: #e9ecef;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.editable {
+    cursor: pointer;
+}
+
+.non-editable {
+    cursor: default;
+}
+
+.export-container+.dt-buttons button {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+.pagination .page-link {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    font-size: 0.8rem !important;
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.pagination .page-link:hover,
+.export-container+.dt-buttons button:hover {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.export-container {
+    float: left;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+tbody {
+    position: relative;
+    min-height: 80px;
+}
+
+tbody .spinner-container {
+    position: relative;
+    width: 100%;
+    padding: 4rem;
+    text-align: center;
+    pointer-events: none;
+}
+
+.spinner-border {
+    position: absolute;
+    top: 50%;
+    left: 46%;
+}
+
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow-x: visible !important;
+        -webkit-overflow-scrolling: auto !important;
+    }
+}
