@@ -1,5 +1,4 @@
 $(function () {
-    const rates = {};
     const systemCurrency = window.systemCurrency;
 
     $('tbody').each(function() {
@@ -18,29 +17,24 @@ $(function () {
     Upload.init(function() {
         if ($.isEmptyObject(this.rates)) {
             Rates.init(function (rates) {
-                rates = rates;
-                Accounts.init(systemCurrency, self.rates);
+                Accounts.init(systemCurrency, rates);
             });
         } else {
-            Accounts.init(systemCurrency, self.rates);
+            Accounts.init();
         }
-
-        Chart.init();
         Transactions.init(() => {
-             Accounts.init(systemCurrency, self.rates);
              Chart.init();
         });
     });
 
     Rates.init(function (rates) {
-        rates = rates;
-        Accounts.init(systemCurrency, self.rates);
+        Accounts.init(systemCurrency, rates);
     });
 
     Chart.init();
 
     Transactions.init(() => {
-        Accounts.init(systemCurrency, self.rates);
+        Accounts.init();
         Chart.init();
     });
 });
